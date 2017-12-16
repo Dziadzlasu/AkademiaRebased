@@ -16,7 +16,7 @@ class BinaryTree
   def self.create(array)
     array.sort!
     return if array.empty?
-    value = array.at(array.length/2.round)
+    value = array.at((array.length / 2).round)
     left = array.select { |i| i < value }
     right = array.select { |i| i > value }
     BinaryTree.new(BinaryTree.create(left), BinaryTree.create(right), value)
