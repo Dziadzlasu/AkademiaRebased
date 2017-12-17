@@ -1,4 +1,5 @@
 require 'bundler'
+require 'pry'
 
 Bundler.require(:default)
 
@@ -14,12 +15,12 @@ class BinaryTree
   end
 
   def self.create(array)
-    return if array.empty?
     array.sort!
-    value = array.at((array.length / 2).round)
-    left = array.select { |i| i < value }
-    right = array.select { |i| i > value }
-    BinaryTree.new(BinaryTree.create(left), BinaryTree.create(right), value)
+    value = array.empty? ? nil : array.at((array.length / 2).round)
+    left = array.empty? ? nil : BinaryTree.create(array.select { |i| i < value })
+    right = array.empty? ? nil : BinaryTree.create(array.select { |i| i > value })
+    return if value.nil? && left.nil? && right.nil?
+    BinaryTree.new(left, right, value)
   end
 
   def generate_graph_tree

@@ -4,8 +4,10 @@ require_relative 'binary_tree'
 
 class TestBinaryTree < Minitest::Test
   def test_binary_tree_with_nil_arguments
-    b = BinaryTree.create([])
-    assert_nil(b)
+    b = BinaryTree.new(nil, nil, nil)
+    assert_equal('', b.value)
+    assert_nil(b.left)
+    assert_nil(b.right)
   end
 
   def test_binary_tree_with_one_element
