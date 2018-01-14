@@ -7,26 +7,26 @@ Bundler.require(:default)
 
 require 'sinatra/reloader'
 enable :sessions
-set :sessions, :expire_after => 2592000
+set :sessions, expire_after: 2_592_000
 set :session_store, Rack::Session::Pool
 
 def logged_in?
-    !session[:id].nil?
+  !session[:id].nil?
 end
 
 get '/' do
   if logged_in?
-      redirect '/logged'
+    redirect '/logged'
   else
-      erb :home
+    erb :home
   end
 end
 
 post '/login' do
   password = params['password']
-  stored_pw = File.read("password.txt")
+  stored_pw = File.read('password.txt')
   salt, stored_hash, timestamp = stored_pw.split(':')
-  new_hash = Digest::SHA512.hexdigest salt+'#'+password+'#'+timestamp
+  new_hash = Digest::SHA512.hexdigest salt + '#' + password + '#' + timestamp
   if FastSecureCompare.compare(new_hash, stored_hash)
     session[:id] = 'logged_in'
     redirect '/logged'
@@ -36,7 +36,11 @@ post '/login' do
 end
 
 get '/logged' do
-  erb :logged
+  if logged_in?
+    erb :logged
+  else
+    redirect '/'
+  end
 end
 
 get '/logout' do
