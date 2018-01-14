@@ -1,6 +1,7 @@
 require 'bundler'
 require 'digest'
 require 'erb'
+require 'fast_secure_compare/fast_secure_compare'
 
 Bundler.require(:default)
 
@@ -26,7 +27,7 @@ post '/login' do
   stored_pw = File.read("password.txt")
   salt, stored_hash, timestamp = stored_pw.split(':')
   new_hash = Digest::SHA512.hexdigest salt+'#'+password+'#'+timestamp
-  if new_hash == stored_hash
+  if FastSecureCompare.compare(new_hash, stored_hash)
     session[:id] = 'logged_in'
     redirect '/logged'
   else
