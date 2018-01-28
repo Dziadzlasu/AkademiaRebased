@@ -1,0 +1,188 @@
+html {
+    background-color: #F7F7F7
+}
+
+body {
+    margin: 0px;
+}
+
+a:link {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    color: darkred;
+    text-decoration: none;
+}
+
+header {
+    background-color: #FFF;
+    height: 4em;
+    box-sizing: border-box;
+}
+
+header ul {
+    list-style-type: none;
+    float: left;
+    margin: auto;
+    padding: 20px 0.5em;
+    font-weight: 600;
+}
+
+header ul li {
+    float: left;
+    padding: 0px 5px;
+    border-right: 1px solid #000;
+}
+
+header ul li:last-child {
+    border-right: none;
+}
+
+header ul li a {
+    /* display: block; */
+    /* color: white; */
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+}
+
+header img {
+    /* padding: 10px 5px;
+    float: right; */
+    position: absolute;
+    top: 12px;
+    right: 0.5em;
+}
+
+main {
+    margin: 0.5em;
+}
+
+article main {
+    float: left;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+article main form {
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+	  box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	  padding: 2em;
+    height: 20em;
+}
+
+article main form div section div.options {
+    float: left;
+    width: 50%;
+    height: 220px;
+    box-sizing: border-box;
+    padding-left: 4em;
+}
+
+article main form div section div.options div {
+    padding: 1em 0;
+}
+
+article main form div section div.options select {
+    align: center;
+    margin: 3em 0;
+    padding: 0.25em 0;
+    width: auto;
+    min-width: 50%;
+    max-width: 100%;
+}
+
+article main form div section div.radio-buttons {
+ margin: auto;
+}
+
+article main form div section div.extras {
+    float: right;
+    width: 50%;
+    height: 220px;
+    box-sizing: border-box;
+    padding-right: 4em;
+}
+
+article main form div section div.extras input {
+    margin: 1em 0;
+    padding: 0.5em 0.25em;
+    width: 80%;
+}
+
+article main form div section div.extras a:before {
+    content: url(question-mark-dim.png);
+    padding-right: 5px;
+}
+
+article main form div section div.extras a {
+    display: block;
+    padding: 0.5em 0;
+}
+
+hr {
+    display: block;
+}
+
+button {
+    float: right;
+    background-color: #FFF;
+    border: none;
+    margin: 2em -2em;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: grey;
+    color: white;
+}
+
+aside {
+    float: right;
+    margin: 0.5em;
+    width: 38%;
+    border: none;
+    box-sizing: border-box;
+}
+
+aside form input {
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px 5px;
+}
+
+aside ul {
+    list-style: none;
+    background-color: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 1em;
+}
+
+aside ul li {
+    width:auto;
+    height:auto;
+}
+
+aside ul li img {
+  width:auto;
+  height:auto;
+  max-width: 100%;
+  max-height: 100%;
+}
