@@ -9,7 +9,7 @@
   </head>
   <body>
     <form method="post" action="/next">
-      <input type="hidden" name="alive_cells" value= '<%= params.to_json %>'>
+      <input type="hidden" name="alive_cells" value= '<%= @alive_cells.to_json %>'>
       <table>
         <% 30.times do |row| %>
           <% row+= 1 %>
@@ -17,7 +17,7 @@
             <% 50.times do |column| %>
               <% column+=1 %>
               <%# checked? = params.include?("#{row}_#{column}") ? true : false %>
-              <% if params.include?("#{row}_#{column}") %>
+              <% if @alive_cells.include?("#{row}_#{column}") %>
                 <td><input type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" checked ></td>
               <% else %>
                 <td><input type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" ></td>

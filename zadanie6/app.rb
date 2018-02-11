@@ -5,7 +5,7 @@ require 'erb'
 require 'pry'
 require 'pry-nav'
 
-def alive(id)
+def alive(id, alive_cells)
   row, column = id.split('_')
   row = row.to_i
   column = column.to_i
@@ -25,11 +25,7 @@ def alive(id)
       false
     end
   else
-    if living == 3
-      true
-    else
-      false
-    end
+    living == 3
   end
 end
 
@@ -40,24 +36,31 @@ def all_cells
   cells.map {|p| "#{p.first}_#{p.last}"}
 end
 
+def evolution
+  @alive_cells = {}
+  @dead_cells = {}
+  all_cells.each do |cell|
+    if alive(cell, @alive_cells)
+      @alive_cells[cell] = 'on'
+    else
+      @dead_cells[cell] = 'off'
+    end
+  end
+  params = @alive_cells
+end
+
 get '/' do
   erb :start
 end
 
 post '/first' do
-  all_cells.each do |cell|
-    # cell = param
-    # binding.pry
-    if alive(cell)
-      params[cell] = "on"
-    else
-      # params.delete cell
-    end
-  end
-  # binding.pry
+  # @alive_cells = params
+  evolution
   erb :next
 end
 
 post '/next' do
+  # @alive_cells = {}
+  evolution
   erb :next
 end
