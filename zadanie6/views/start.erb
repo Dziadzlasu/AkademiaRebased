@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link href="styles.css" rel="stylesheet">
+    <title>Game of Life</title>
+  </head>
+  <body>
+    <form method="post" action="/first">
+      <table>
+        <% 30.times do |row| %>
+          <% row+= 1 %>
+          <tr>
+            <% 50.times do |column| %>
+              <% column+=1 %>
+              <td><input type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>"></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <button type="submit">Next iteration</button>
+    </form>
+  </body>
+</html>
