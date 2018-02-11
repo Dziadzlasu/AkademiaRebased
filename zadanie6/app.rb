@@ -2,8 +2,6 @@ require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader'
 require 'erb'
-require 'pry'
-require 'pry-nav'
 
 def alive(id, alive_cells)
   row, column = id.split('_')
@@ -53,14 +51,7 @@ get '/' do
   erb :start
 end
 
-post '/first' do
-  # @alive_cells = params
-  evolution
-  erb :next
-end
-
 post '/next' do
-  # @alive_cells = {}
   evolution
   erb :next
 end

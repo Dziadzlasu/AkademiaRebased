@@ -1,0 +1,47 @@
+html {
+  background-color: #F7F7F7
+}
+table {
+  background-color: #F7F7F7
+  border: none;
+  padding: none;
+}
+td.alive {
+  background-color: #000;
+  border: none;
+  margin: none;
+  padding: none;
+  size: 18px;
+}
+td.dead {
+  background-color: #F7F7F7;
+  border: none;
+  margin: none;
+  padding: none;
+  size: 18px;
+}
+input.hidden {
+  visibility: hidden;
+}
+aside {
+  width: 35%
+}
+button {
+  float: right;
+    background-color: #FFF;
+    border: none;
+    margin: -25em 10em;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-color: grey;
+    color: white;
+}

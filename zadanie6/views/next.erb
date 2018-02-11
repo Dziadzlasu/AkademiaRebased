@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <link href="styles.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet" type="text/css">
     <title>Game of Life</title>
   </head>
   <body>
@@ -16,11 +16,10 @@
           <tr>
             <% 50.times do |column| %>
               <% column+=1 %>
-              <%# checked? = params.include?("#{row}_#{column}") ? true : false %>
               <% if @alive_cells.include?("#{row}_#{column}") %>
-                <td><input type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" checked ></td>
+                <td class="alive"><input class="hidden" type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" checked ></td>
               <% else %>
-                <td><input type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" ></td>
+                <td class="dead"><input class="hidden" type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" ></td>
               <% end %>
             <% end %>
           </tr>
