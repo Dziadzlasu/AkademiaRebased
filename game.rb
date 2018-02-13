@@ -1,6 +1,7 @@
+require 'pry'
+require 'pry-nav'
 class Game
-  attr_accessor :board
-  attr_accessor :win
+  attr_accessor :board, :win, :field, :turn
 
   def initialize
     @win = false
@@ -20,10 +21,9 @@ class Game
 
   def winner(row)
     return if row.any? { |s| s.strip.empty? }
-    if row.uniq.length == 1
-      puts "#{row.first} wins!"
-      @win = true
-    end
+    return unless row.uniq.length == 1
+    puts "#{row.first} wins!"
+    @win = true
   end
 
   def check_winner
@@ -37,44 +37,38 @@ class Game
      [board[:A3], board[:B2], board[:C1]]].detect { |comb| winner(comb) }
   end
 
-  def add_symbol(field, symbol)
-    board[field] = symbol
+  def add_symbol(field, player)
+    board[field] = player
   end
 
-  def player_input
+  def player_input(turn)
     draw
+    @player = 'X' if turn.odd?
+    @player = 'O' if turn.even?
+    puts "Choose empty field for next #{@player} move"
+    # binding.pry
+    @field = gets.chomp.upcase.to_sym
+    # binding.pry
+  end
+
+  def game_logic
     turn = 1
-    while win == false
-      if turn.odd?
-        puts 'Choose empty field for next X move'
-        field = gets.chomp.upcase.to_sym
-        if board.key?(field)
-          if board[field].strip.empty?
-            add_symbol(field, 'X')
-            turn += 1
-          end
-          draw
-          break if board.all? { |_k, v| !v.strip.empty? } && !check_winner
-          break if check_winner
-        else
-          puts 'Please input valid field number e.g. "A1"'
+    loop do
+      player_input(turn)
+      # binding.pry
+      if board.key?(field)
+        if board[field].strip.empty?
+        add_symbol(field, @player)
+        turn += 1
         end
+        draw
+        break if win == true
+        break if turn == 10 && !check_winner
+        break if check_winner
       else
-        puts 'Choose empty field for next O move'
-        field = gets.chomp.upcase.to_sym
-        if board.key?(field)
-          if board[field].strip.empty?
-            add_symbol(field, 'O')
-            turn += 1
-          end
-          draw
-          break if board.all? { |_k, v| !v.strip.empty? } && !check_winner
-          break if check_winner
-        else
-          puts 'Please input valid field number e.g. "A1"'
-        end
+        puts 'Please input valid field number e.g. "A1"'
       end
     end
   end
 end
-Game.new.player_input
+Game.new.game_logic
