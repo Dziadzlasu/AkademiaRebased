@@ -1,11 +1,11 @@
-require 'pry'
-require 'pry-nav'
+# nodoc
 class Game
   attr_accessor :board, :win, :field, :turn
 
   def initialize
     @win = false
-    @board = { A1: ' ', A2: ' ', A3: ' ', B1: ' ', B2: ' ', B3: ' ', C1: ' ', C2: ' ', C3: ' ' }
+    @board = { A1: ' ', A2: ' ', A3: ' ', B1: ' ', B2: ' ', B3: ' ', C1: ' ',
+               C2: ' ', C3: ' ' }
   end
 
   def draw
@@ -43,28 +43,22 @@ class Game
 
   def player_input(turn)
     draw
-    @player = 'X' if turn.odd?
-    @player = 'O' if turn.even?
+    @player = 'X' if turn.even?
+    @player = 'O' if turn.odd?
     puts "Choose empty field for next #{@player} move"
-    # binding.pry
     @field = gets.chomp.upcase.to_sym
-    # binding.pry
   end
 
   def game_logic
-    turn = 1
+    turn = 0
     loop do
       player_input(turn)
-      # binding.pry
-      if board.key?(field)
-        if board[field].strip.empty?
+      if board.key?(field) && board[field].strip.empty?
         add_symbol(field, @player)
         turn += 1
-        end
         draw
-        break if win == true
-        break if turn == 10 && !check_winner
-        break if check_winner
+        break if turn == 9 && !check_winner
+        break if win == true || check_winner
       else
         puts 'Please input valid field number e.g. "A1"'
       end
