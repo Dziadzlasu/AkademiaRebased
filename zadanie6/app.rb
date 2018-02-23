@@ -1,7 +1,10 @@
+require 'bundler'
 require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader'
 require 'erb'
+
+Bundler.require(:default)
 
 def alive(id, alive_cells)
   row, column = id.split('_')
