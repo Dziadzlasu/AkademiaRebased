@@ -6,25 +6,19 @@ require 'erb'
 
 Bundler.require(:default)
 
-def alive(id, alive_cells)
+def alive(id, _alive_cells)
   row, column = id.split('_')
   row = row.to_i
   column = column.to_i
-  neighbors = [ "#{(row - 1) }_#{(column - 1)}", "#{(row - 1)}_#{column}", "#{(row - 1)}_#{(column + 1)}",
-  "#{row}_#{(column - 1)}", "#{row}_#{(column + 1)}", "#{(row + 1)}_#{(column - 1)}",
-  "#{(row + 1)}_#{column}", "#{(row + 1)}_#{(column + 1)}"]
+  neighbors = ["#{(row - 1)}_#{(column - 1)}", "#{(row - 1)}_#{column}", "#{(row - 1)}_#{(column + 1)}",
+               "#{row}_#{(column - 1)}", "#{row}_#{(column + 1)}",
+               "#{(row + 1)}_#{(column - 1)}", "#{(row + 1)}_#{column}", "#{(row + 1)}_#{(column + 1)}"]
   neighbors_alive = neighbors.select do |cell|
     params.include?(cell)
   end
   living = neighbors_alive.size
   if params.include?(id)
-    if living < 2
-      false
-    elsif living == 2 || living == 3
-      true
-    elsif living > 3
-      false
-    end
+    true unless living < 2 || living > 3
   else
     living == 3
   end
@@ -34,7 +28,7 @@ def all_cells
   rows = (1..30).to_a
   columns = (1..50).to_a
   cells = rows.product columns
-  cells.map {|p| "#{p.first}_#{p.last}"}
+  cells.map { |p| "#{p.first}_#{p.last}" }
 end
 
 def evolution
@@ -47,7 +41,6 @@ def evolution
       @dead_cells[cell] = 'off'
     end
   end
-  params = @alive_cells
 end
 
 get '/' do
