@@ -6,7 +6,7 @@ require 'erb'
 
 Bundler.require(:default)
 
-def alive(id, _alive_cells)
+def alive(id)
   row, column = id.split('_')
   row = row.to_i
   column = column.to_i
@@ -35,7 +35,7 @@ def evolution
   @alive_cells = {}
   @dead_cells = {}
   all_cells.each do |cell|
-    if alive(cell, @alive_cells)
+    if alive(cell)
       @alive_cells[cell] = 'on'
     else
       @dead_cells[cell] = 'off'
