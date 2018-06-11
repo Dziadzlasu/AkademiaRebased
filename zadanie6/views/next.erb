@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link href="/styles.css" rel="stylesheet" type="text/css">
+    <title>Game of Life</title>
+  </head>
+  <body>
+    <form method="post" action="/next">
+      <input type="hidden" name="alive_cells" value= '<%= @alive_cells.to_json %>'>
+      <table>
+        <% 30.times do |row| %>
+          <% row+= 1 %>
+          <tr>
+            <% 50.times do |column| %>
+              <% column+=1 %>
+              <% if @alive_cells.include?("#{row}_#{column}") %>
+                <td class="alive"><input class="hidden" type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" checked ></td>
+              <% else %>
+                <td class="dead"><input class="hidden" type="checkbox" id= "<%="#{row}_#{column}"%>" name="<%="#{row}_#{column}"%>" ></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <button type="submit">Next iteration</button>
+    </form>
+    <form action="/">
+      <button class="reset" type="submit">Restart</button>
+    </form>
+  </body>
+</html>
